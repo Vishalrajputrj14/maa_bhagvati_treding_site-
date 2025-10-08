@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Maa Bhagwati Trading Company — Bike Accessories Wholesale</title>
+<style>
+  :root{
+    --primary:#0b6fbf;
+    --accent:#ff5a1f;
+    --muted:#6b7280;
+    --bg:#f7f9fc;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+  body{background:var(--bg);color:#0f1724;line-height:1.6;}
+  a{color:inherit;text-decoration:none}
+
+  /* Header / Navbar */
+  .topbar{background:#fff;border-bottom:1px solid #e6e9ef;position:sticky;top:0;z-index:1000;}
+  .container{max-width:1100px;margin:0 auto;padding:18px;}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .logo{width:48px;height:48px;border-radius:8px;background:linear-gradient(180deg,var(--primary),#0a4f88);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;}
+  .brand h1{font-size:20px;margin-bottom:2px;}
+  .brand p{margin:0;font-size:13px;color:var(--muted);}
+
+  /* Navlinks */
+  .navlinks{display:flex;gap:12px;align-items:center;}
+  .navlinks a{padding:10px 14px;border-radius:8px;font-weight:700;color:#0b2240;transition:0.3s;}
+  .navlinks a:hover{background:#f1f5f9;}
+
+  .cta{background:var(--primary);color:#fff;padding:10px 14px;border-radius:8px;font-weight:800;transition:0.3s;}
+  .cta:hover{background:#094c85;}
+
+  /* Hamburger Button */
+  .menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    background: var(--primary);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+  }
+
+  /* Hero */
+  .hero{display:flex;gap:28px;align-items:center;padding:44px 0;flex-wrap:wrap;}
+  .hero-left{flex:1;min-width:280px;}
+  .hero h2{font-size:32px;margin:0 0 12px;line-height:1.2;}
+  .hero p{margin:0 0 20px;color:var(--muted);}
+  .hero .actions{display:flex;gap:12px;margin-bottom:28px;}
+  .hero .primary-btn{background:var(--accent);color:#fff;padding:12px 16px;border-radius:10px;font-weight:800;transition:0.3s;}
+  .hero .primary-btn:hover{background:#e04e1a;}
+  .hero .secondary{background:#fff;border:1px solid #e6e9ef;padding:12px 16px;border-radius:10px;transition:0.3s;}
+  .hero .secondary:hover{background:#f1f5f9;}
+
+  .hero-right{width:420px;background:linear-gradient(180deg,#fff,#f8fbff);border-radius:12px;padding:24px;box-shadow:0 10px 30px rgba(13,27,55,0.06);flex-shrink:0;}
+  .contact-line{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .contact-line strong{font-size:16px;}
+  .tag{display:inline-block;background:#eef6ff;color:var(--primary);padding:6px 12px;border-radius:8px;font-weight:700;margin-bottom:16px;font-size:13px;}
+
+  /* Quick Categories */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+  .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid #eef2f8;box-shadow:0 4px 12px rgba(0,0,0,0.05);transition:0.3s;}
+  .card:hover{box-shadow:0 6px 18px rgba(0,0,0,0.1);}
+  .card h4{margin-bottom:8px;font-size:16px;}
+  .card p{margin:0;color:var(--muted);font-size:14px;}
+
+  /* Banner / Slideshow */
+  .banner{
+    width: 100%;
+    max-height: 550px;
+    overflow: hidden;
+    border-radius:12px;
+    margin:20px 0;
+    position:relative;
+  }
+  .banner img{
+    width: 100%;
+    height:  850px;
+    object-fit:cover;
+    border-radius:12px;
+    transition: opacity 1s ease-in-out;
+  }
+
+  /* Footer */
+  footer{background:#fff;border-top:1px solid #e6e9ef;margin-top:40px;padding:24px;}
+  .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+  .small{color:var(--muted);font-size:13px;}
+
+  /* Responsive */
+  @media(max-width:880px){
+    .hero{flex-direction:column;}
+    .hero-right{width:100%;}
+    .menu-toggle{display:block;}
+    .navlinks{
+      display:none;
+      flex-direction:column;
+      background:#fff;
+      border:1px solid #e6e9ef;
+      border-radius:8px;
+      padding:12px;
+      position:absolute;
+      top:70px;
+      right:18px;
+      width:200px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    }
+    .navlinks.show{display:flex;}
+    .navlinks a{display:block;padding:10px;}
+  }
+  .banner img{
+  width: 100%;
+  height: 550px;         /* Desktop height */
+  object-fit: cover;
+  border-radius:12px;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px){
+  .banner img{
+    height: 250px;       /* Mobile me chhoti height */
+    object-fit: contain; /* Image puri dikhe, cut na ho */
+  }
+}
+
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container nav">
+    <!-- Left: Logo & Brand -->
+    <div class="brand">
+      <div class="logo">MB</div>
+      <div>
+        <h1 style="margin:0;font-size:20px;">Maa Bhagwati Trading Company</h1>
+        <p class="small">Bike Accessories — Wholesale Supplier</p>
+      </div>
+    </div>
+
+    <!-- Right: Nav Links + CTA -->
+    <div style="display:flex; align-items:center; gap:18px; position:relative;">
+      <!-- Hamburger Button -->
+      <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products ▾</a>
+        <a href="order.html">Order Form</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <a class="cta" href="order.html">Place Wholesale Order</a>
+    </div>
+  </div>
+</header>
+<!-- Chat Box -->
+<div id="chat-box" style="position:fixed; bottom:20px; right:20px; width:300px; max-height:400px; background:#fff; border:1px solid #0073e6; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2); display:flex; flex-direction:column; overflow:hidden; font-family:sans-serif; z-index:9999;">
+    <div id="chat-header" style="background:#0073e6; color:#fff; padding:10px; cursor:pointer;">AI Assistant</div>
+    <div id="chat-content" style="flex:1; padding:10px; overflow-y:auto;"></div>
+    <div style="display:flex; border-top:1px solid #ccc;">
+        <input id="chat-input" type="text" placeholder="Type your message..." style="flex:1; padding:8px; border:none; outline:none;">
+        <button id="chat-send" style="background:#0073e6; color:#fff; border:none; padding:8px 12px; cursor:pointer;">Send</button>
+    </div>
+</div>
+
+
+
+<!-- Banner / Slideshow -->
+<section class="banner">
+  <img id="bannerImg" src="images/banner1.jpg" alt="Bike Accessories Banner">
+</section>
+
+<!-- Hero Section -->
+<main class="container">
+  <section class="hero">
+    <div class="hero-left">
+      <div class="tag">Serving Cities & Small Towns</div>
+      <h2>Quality Bike Accessories — Wholesale Only</h2>
+      <p>We supply footrests, chain covers, leg guards, grips, mirrors and more to retailers, workshops, and distributors across towns and cities. Minimum order quantities and wholesale packaging available.</p>
+      <div class="actions">
+        <a class="primary-btn" href="order.html">Order Now</a>
+        <a class="secondary" href="products.html">View Products</a>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h4>Footrest Rubbers</h4>
+          <p>Box of 20 — Minimum Order 10 boxes</p>
+        </div>
+        <div class="card">
+          <h4>Chain Covers</h4>
+          <p>Steel & Plastic options — Bulk packs available</p>
+        </div>
+        <div class="card">
+          <h4>Leg Guards</h4>
+          <p>Variety of finishes — Pack sizes for wholesalers</p>
+        </div>
+        <div class="card">
+          <h4>Grips & Mirrors</h4>
+          <p>Anti-slip grips & foldable mirrors in wholesale bundles</p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="hero-right">
+      <div class="contact-line"><strong>Maa Bhagwati Trading Co.</strong><span class="small">Since 2025</span></div>
+      <div style="margin-bottom:8px;color:var(--muted)">Quick Contact</div>
+      <div style="font-weight:800;font-size:18px;margin-bottom:6px">+91-9694193221</div>
+      <div style="color:var(--muted);font-size:14px;margin-bottom:14px">Email: <span class="small">info@maabhagwati.com</span></div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:12px">Office: Main Market, Your City, bharatpur</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="primary-btn" href="order.html">Order Form</a>
+        <a class="secondary" href="contact.html">Get Directions</a>
+      </div>
+    </aside>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div style="font-weight:800">Maa Bhagwati Trading Company</div>
+      <div class="small">Wholesale supplier of bike accessories — Footrest, Chain Cover, Leg Guards, Grips, Mirrors</div>
+    </div>
+    <div style="text-align:right">
+      <div class="small">Contact</div>
+      <div style="font-weight:800">+91-XXXXXXXXXX</div>
+      <div class="small">GST: XXAXXXXXX</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Banner images array
+  const bannerImages = ['4.jpg','5.jpg','gt.avif'];
+  let index = 0;
+  const bannerImg = document.getElementById('bannerImg');
+
+  function changeBanner(){
+    index = (index + 1) % bannerImages.length;
+    bannerImg.style.opacity = 0;
+    setTimeout(() => {
+      bannerImg.src = bannerImages[index];
+      bannerImg.alt = "Bike Accessories Banner";
+      bannerImg.style.opacity = 1;
+    }, 500);
+  }
+  setInterval(changeBanner, 2000);
+
+  // Toggle Menu
+  function toggleMenu(){
+    document.querySelector('.navlinks').classList.toggle('show');
+  }
+</script>
+<script>
+const chatHeader = document.getElementById('chat-header');
+const chatBox = document.getElementById('chat-box');
+const chatContent = document.getElementById('chat-content');
+const chatInput = document.getElementById('chat-input');
+const chatSend = document.getElementById('chat-send');
+
+let chatOpen = true;
+
+// Toggle chat box
+chatHeader.addEventListener('click', () => {
+    chatOpen = !chatOpen;
+    chatContent.style.display = chatOpen ? 'block' : 'none';
+    chatInput.parentElement.style.display = chatOpen ? 'flex' : 'none';
+});
+
+// Send message
+chatSend.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', (e) => { if(e.key==='Enter') sendMessage(); });
+
+function appendMessage(user, text){
+    const div = document.createElement('div');
+    div.style.marginBottom = "8px";
+    div.innerHTML = `<strong>${user}:</strong> ${text}`;
+    chatContent.appendChild(div);
+    chatContent.scrollTop = chatContent.scrollHeight;
+}
+
+async function sendMessage(){
+    const message = chatInput.value.trim();
+    if(!message) return;
+    appendMessage('You', message);
+    chatInput.value = '';
+
+    try {
+        const res = await fetch('http://127.0.0.1:8000/chat', {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({message})
+        });
+        const data = await res.json();
+        appendMessage('AI', data.reply);
+    } catch(err) {
+        appendMessage('AI', 'Sorry, AI is not available.');
+        console.error(err);
+    }
+}
+</script>
+
+
+</body>
+</html>

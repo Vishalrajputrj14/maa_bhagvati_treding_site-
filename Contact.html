@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact — Maa Bhagwati Trading Company</title>
+<style>
+:root{
+  --primary:#0b6fbf;
+  --accent:#ff5a1f;
+  --muted:#6b7280;
+  --bg:#f7f9fc;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+body{background:var(--bg);color:#0f1724;line-height:1.6;}
+a{color:inherit;text-decoration:none}
+
+/* Header / Navbar */
+.topbar{background:#fff;border-bottom:1px solid #e6e9ef;position:sticky;top:0;z-index:1000;}
+.container{max-width:1100px;margin:0 auto;padding:18px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:12px;}
+.logo{width:48px;height:48px;border-radius:8px;background:linear-gradient(180deg,var(--primary),#0a4f88);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;}
+.brand h1{margin:0;font-size:20px;}
+.brand p{margin:0;font-size:13px;color:var(--muted);}
+.navlinks{display:flex;gap:12px;align-items:center;}
+.navlinks a{padding:10px 14px;border-radius:8px;font-weight:700;color:#0b2240;transition:0.3s;}
+.navlinks a:hover{background:#f1f5f9;}
+.cta{background:var(--primary);color:#fff;padding:10px 14px;border-radius:8px;font-weight:800;transition:0.3s;}
+.cta:hover{background:#094c85;}
+
+/* Contact Section */
+main{max-width:900px;margin:40px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.1);}
+h2{margin-bottom:20px;color:var(--primary);}
+.contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.contact-info{padding:10px;}
+.contact-info h3{margin-bottom:10px;}
+.contact-info p{margin:4px 0;color:var(--muted);}
+form{display:flex;flex-direction:column;gap:16px;}
+label{font-weight:600;}
+input, textarea{padding:12px;border:1px solid #e6e9ef;border-radius:8px;font-size:14px;}
+input:focus, textarea:focus{outline:none;border-color:var(--primary);}
+button{padding:12px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:800;cursor:pointer;transition:0.3s;}
+button:hover{background:#e04e1a;}
+
+/* Footer */
+footer{background:#fff;border-top:1px solid #e6e9ef;margin-top:40px;padding:24px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.small{color:var(--muted);font-size:13px;}
+
+/* Responsive */
+@media(max-width:880px){
+  .navlinks{display:none;}
+  .contact-wrapper{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="topbar">
+  <div class="container">
+    <div class="brand">
+      <div class="logo">MB</div>
+      <div style="line-height:1.1;">
+        <h1>Maa Bhagwati Trading Company</h1>
+        <p>Bike Accessories — Wholesale Supplier</p>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;">
+      <nav class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products ▾</a>
+        <a href="order.html">Order Form</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="text-align:right;">
+          <div class="small">Call / WhatsApp</div>
+          <div style="font-weight:800">+91-XXXXXXXXXX</div>
+        </div>
+        <a class="cta" href="order.html">Place Wholesale Order</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Contact Section -->
+<main>
+  <h2>Contact Us</h2>
+  <div class="contact-wrapper">
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <h3>Get in Touch</h3>
+      <p><strong>Phone:</strong> +91-XXXXXXXXXX</p>
+      <p><strong>Email:</strong> info@maabhagwati.com</p>
+      <p><strong>Office:</strong> Main Market, Your City, State, India</p>
+      <p class="small">We are available Mon–Sat, 9:00 AM to 7:00 PM</p>
+    </div>
+
+    <!-- Contact Form -->
+    <form action="submit_contact.php" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div style="font-weight:800">Maa Bhagwati Trading Company</div>
+      <div class="small">Wholesale supplier of bike accessories — Footrest, Chain Cover, Leg Guards, Grips, Mirrors</div>
+    </div>
+    <div style="text-align:right">
+      <div class="small">Contact</div>
+      <div style="font-weight:800">+91-XXXXXXXXXX</div>
+      <div class="small">GST: XXAXXXXXX</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

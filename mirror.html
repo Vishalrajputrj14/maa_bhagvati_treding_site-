@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mirrors - Maa Bhagwati Trading Company</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* --- Reset default spacing --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+}
+
+/* Navbar base */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #004d99, #0073e6);
+  padding: 12px 20px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  perspective: 1000px;
+}
+.navbar .logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  transform: rotateY(0deg);
+  transition: transform 0.5s;
+}
+.navbar .logo:hover {
+  transform: rotateY(360deg);
+}
+
+/* Nav links */
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.navbar nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  transform-style: preserve-3d;
+}
+.navbar nav a:hover {
+  transform: translateZ(10px) rotateX(5deg) rotateY(5deg);
+  background: rgba(255,255,255,0.2);
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+.dropbtn {
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: transform 0.3s, background 0.3s;
+}
+.dropbtn:hover {
+  transform: translateZ(10px) rotateX(5deg) rotateY(5deg);
+  background: rgba(255,255,255,0.2);
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #0073e6;
+  min-width: 180px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+.dropdown-content a {
+  display: block;
+  padding: 8px 12px;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.dropdown-content a:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateZ(5px);
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Hamburger for mobile */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .navbar nav {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: linear-gradient(135deg, #004d99, #0073e6);
+    flex-direction: column;
+    width: 200px;
+    display: none;
+    padding: 12px;
+    border-radius: 0 0 12px 12px;
+    transform-style: preserve-3d;
+  }
+  .navbar nav.active {
+    display: flex;
+    animation: navDrop 0.5s ease;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+@keyframes navDrop {
+  0% {transform: translateY(-20px); opacity:0;}
+  100% {transform: translateY(0); opacity:1;}
+}
+
+/* 3D Card Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 20px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+}
+.product-card:hover {
+  transform: rotateY(5deg) rotateX(5deg) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+.product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.product-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+.product-card a {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: #ff5a1f;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.product-card a:hover {
+  background: #e04e1a;
+}
+
+/* Footer */
+footer {
+  background:#004d99;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+  margin-top:40px;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+  <div class="logo">Maa Bhagwati Trading Company</div>
+
+  <!-- Hamburger button -->
+  <div class="hamburger"><span></span><span></span><span></span></div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <div class="dropdown">
+      <button class="dropbtn">Products ▼</button>
+      <div class="dropdown-content">
+        <a href="footrest.html">Footrest</a>
+        <a href="chaincover.html">Chain Cover</a>
+        <a href="legguard.html">Leg Guard</a>
+        <a href="grip.html">Grip</a>
+        <a href="mirror.html">Mirror</a>
+      </div>
+    </div>
+    <a href="order.html">Order Form</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+
+
+<!-- Page Hero -->
+<section class="products-hero" style="text-align:center;padding:40px 20px;background:#004d99;color:#fff;">
+  <h1>Mirror Collection</h1>
+  <p>Wholesale bike mirrors for scooters and motorcycles</p>
+</section>
+
+<!-- Products Grid -->
+<section class="products-grid">
+  <div class="product-card">
+    <img src="img/m1.jpg" alt="Mirror">
+    <h3>Mirror Model 1</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m2.jpeg" alt="Mirror">
+    <h3>Mirror Model 2</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m3.jpg" alt="Mirror">
+    <h3>Mirror Model 3</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m4.webp" alt="Mirror">
+    <h3>Mirror Model 4</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m5.jpeg" alt="Mirror">
+    <h3>Mirror Model 5</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m6.jpg" alt="Mirror">
+    <h3>Mirror Model 1</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m8.avif" alt="Mirror">
+    <h3>Mirror Model 2</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m7.webp" alt="Mirror">
+    <h3>Mirror Model 3</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m9.webp" alt="Mirror">
+    <h3>Mirror Model 4</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+   <div class="product-card">
+    <img src="img/m1.jpg" alt="Mirror">
+    <h3>Mirror Model 1</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m2.jpeg" alt="Mirror">
+    <h3>Mirror Model 2</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m3.jpg" alt="Mirror">
+    <h3>Mirror Model 3</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m4.webp" alt="Mirror">
+    <h3>Mirror Model 4</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m5.jpeg" alt="Mirror">
+    <h3>Mirror Model 5</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m6.jpg" alt="Mirror">
+    <h3>Mirror Model 1</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m8.avif" alt="Mirror">
+    <h3>Mirror Model 2</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m7.webp" alt="Mirror">
+    <h3>Mirror Model 3</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  <div class="product-card">
+    <img src="img/m9.webp" alt="Mirror">
+    <h3>Mirror Model 4</h3>
+    <a href="mirror.html">View Product</a>
+  </div>
+  
+  
+  <!-- Add more static cards as needed -->
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Maa Bhagwati Trading Company | All Rights Reserved</p>
+  <p>Phone: +91-XXXXXXXXXX | Email: info@mbtrading.com</p>
+</footer>
+
+<script>
+// Hamburger toggle
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.navbar nav');
+hamburger.addEventListener('click', ()=> navMenu.classList.toggle('active'));
+</script>
+
+</body>
+</html>

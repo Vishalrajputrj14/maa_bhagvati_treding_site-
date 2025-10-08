@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bike Accessories Shop — Demo</title>
+  <style>
+    :root{--accent:#ff5a1f;--bg:#f6f7fb;--card:#ffffff;--muted:#6b7280}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, Arial, sans-serif;background:var(--bg);color:#111}
+    header{background:#fff;border-bottom:1px solid #e6e9ef;padding:16px 22px;display:flex;align-items:center;gap:16px}
+    .logo{font-weight:700;color:var(--accent);letter-spacing:.4px}
+    .search{flex:1;display:flex}
+    .search input{width:100%;padding:10px 12px;border:1px solid #e3e6ee;border-radius:8px}
+    .container{display:flex;gap:20px;padding:22px;max-width:1200px;margin:18px auto}
+    /* sidebar / taskbar */
+    nav.sidebar{width:260px;background:linear-gradient(180deg,#fff,#fafbff);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(14,20,40,0.04)}
+    nav.sidebar h3{margin:0 0 12px 0;font-size:16px}
+    .category{display:flex;flex-direction:column;gap:8px}
+    .cat-btn{background:transparent;border:0;padding:10px 12px;text-align:left;border-radius:8px;cursor:pointer;font-weight:600;color:#111}
+    .cat-btn:hover{background:#f1f5f9}
+    .cat-btn.active{background:var(--accent);color:#fff}
+    .filters{margin-top:14px;font-size:13px;color:var(--muted)}
+
+    /* main content */
+    main{flex:1}
+    .toprow{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+    .card{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(14,20,40,0.05);display:flex;flex-direction:column;gap:8px}
+    .thumb{height:140px;border-radius:8px;background:linear-gradient(180deg,#eef2ff,#f8fafc);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+    .pname{font-weight:700}
+    .price{color:var(--accent);font-weight:800}
+    .meta{font-size:13px;color:var(--muted)}
+    .actions{display:flex;gap:8px;margin-top:6px}
+    .btn{padding:8px 10px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
+    .btn.secondary{background:#eef2ff;color:#0b5;flex:1}
+    .btn.primary{background:var(--accent);color:#fff}
+
+    /* modal */
+    .modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal{width:100%;max-width:720px;background:#fff;border-radius:12px;padding:18px}
+    .modal-grid{display:grid;grid-template-columns:220px 1fr;gap:12px}
+
+    footer{max-width:1200px;margin:20px auto;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:880px){.container{padding:12px;flex-direction:column}.sidebar{width:100%;display:flex;overflow-x:auto}.modal-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">BikeBazaar</div>
+    <div class="search">
+      <input id="searchInput" placeholder="Yahan product khoje — jaise 'footrest', 'grip'..." />
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button id="cartBtn" class="btn primary">Cart (<span id="cartCount">0</span>)</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <h3>Categories</h3>
+      <div class="category" id="categoryList">
+        <!-- Categories injected by JS -->
+      </div>
+
+      <div class="filters">
+        <div style="margin-top:12px;font-weight:700">Quick filters</div>
+        <label style="display:block;margin-top:8px"><input type="checkbox" id="inStockOnly" /> Only in-stock</label>
+        <label style="display:block;margin-top:6px"><input type="checkbox" id="showOnSale" /> Show sale items</label>
+      </div>
+
+      <div style="margin-top:18px;color:var(--muted);font-size:13px">Tip: category par click karke uske saare items dekho. Product par click karo for details.</div>
+    </nav>
+
+    <main>
+      <div class="toprow">
+        <div style="font-weight:800;font-size:18px" id="titleNow">All Products</div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <select id="sortBy">
+            <option value="default">Sort: Recommended</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid" id="productGrid">
+        <!-- products injected by JS -->
+      </div>
+
+    </main>
+  </div>
+
+  <!-- modal -->
+  <div class="modal-back" id="modalBack">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="font-weight:800" id="modalName">Product</div>
+        <button id="closeModal" class="btn">X</button>
+      </div>
+      <div class="modal-grid">
+        <div style="background:#f8fafc;border-radius:10px;padding:8px;display:flex;align-items:center;justify-content:center">Image<br><small style="color:var(--muted)">(replace with real image)</small></div>
+        <div>
+          <div style="font-size:14px;color:var(--muted)" id="modalCategory">Category</div>
+          <div style="margin-top:8px" id="modalDesc">Full product description goes here. Material, fit, compatibility, size, notes and installation instructions.</div>
+          <div style="margin-top:10px;font-weight:800;font-size:18px" id="modalPrice">₹0</div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button id="addToCartModal" class="btn primary">Add to cart</button>
+            <button id="buyNow" class="btn secondary">Buy now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>&copy; 2025 BikeBazaar — Demo site. Ye template aap backend (PHP/Node) ke saath integrate kar sakte hain.</footer>
+
+  <script>
+    // --- Sample data ---
+    const CATEGORIES = [
+      {id:'all', name:'All'},
+      {id:'footrest', name:'Footrest Rubbers'},
+      {id:'chaincover', name:'Chain & Cover'},
+      {id:'legguard', name:'Leg Guards'},
+      {id:'grip', name:'Grips'},
+      {id:'mirror', name:'Mirror & Mounts'}
+    ];
+
+    const PRODUCTS = [
+      {id:1,name:'Universal Footrest Rubber Cap (Set)', category:'footrest', price:199, stock:true, onSale:false, desc:'Durable rubber cap for bike footrest. Fits most models.'},
+      {id:2,name:'Chrome Chain Cover (Half)', category:'chaincover', price:499, stock:true, onSale:true, desc:'Protective chain cover, corrosion-resistant steel.'},
+      {id:3,name:'Full Leg Guard — Heavy Duty', category:'legguard', price:899, stock:false, onSale:false, desc:'Robust leg guard for safety and style.'},
+      {id:4,name:'Soft Grip Pair (Anti-slip)', category:'grip', price:249, stock:true, onSale:false, desc:'Comfort grips with anti-slip texture.'},
+      {id:5,name:'Plastic Chain Sheet Cover', category:'chaincover', price:299, stock:true, onSale:false, desc:'Lightweight chain sheet cover.'},
+      {id:6,name:'Foldable Mirror Mount', category:'mirror', price:349, stock:true, onSale:true, desc:'Foldable rear view mirror mount.'}
+    ];
+
+    // --- App state ---
+    let state = {category:'all', q:'', inStock:false, onSale:false, sort:'default', cart:{}};
+
+    // --- DOM refs ---
+    const categoryList = document.getElementById('categoryList');
+    const productGrid = document.getElementById('productGrid');
+    const titleNow = document.getElementById('titleNow');
+    const searchInput = document.getElementById('searchInput');
+    const inStockOnly = document.getElementById('inStockOnly');
+    const showOnSale = document.getElementById('showOnSale');
+    const sortBy = document.getElementById('sortBy');
+    const cartCount = document.getElementById('cartCount');
+
+    // Modal refs
+    const modalBack = document.getElementById('modalBack');
+    const modalName = document.getElementById('modalName');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalPrice = document.getElementById('modalPrice');
+    const addToCartModal = document.getElementById('addToCartModal');
+    const closeModal = document.getElementById('closeModal');
+
+    let currentModalProduct = null;
+
+    // --- Initialization ---
+    function init(){
+      renderCategories();
+      renderProducts();
+      attachEvents();
+      updateCartUI();
+    }
+
+    function renderCategories(){
+      categoryList.innerHTML = '';
+      CATEGORIES.forEach(c=>{
+        const b = document.createElement('button');
+        b.className = 'cat-btn'+(state.category===c.id? ' active':'');
+        b.textContent = c.name;
+        b.onclick = ()=>{ state.category = c.id; titleNow.textContent = c.name + ' Products'; renderProducts(); renderCategories(); };
+        categoryList.appendChild(b);
+      });
+    }
+
+    function renderProducts(){
+      const q = state.q.trim().toLowerCase();
+      let list = PRODUCTS.filter(p=>{
+        if(state.category!=='all' && p.category!==state.category) return false;
+        if(state.inStock && !p.stock) return false;
+        if(state.onSale && !p.onSale) return false;
+        if(q && !(p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q))) return false;
+        return true;
+      });
+
+      if(state.sort==='price-asc') list.sort((a,b)=>a.price-b.price);
+      if(state.sort==='price-desc') list.sort((a,b)=>b.price-a.price);
+
+      productGrid.innerHTML = '';
+      if(list.length===0){ productGrid.innerHTML = '<div style="grid-column:1/-1;color:var(--muted)">Koi product nahi mila.</div>'; return; }
+
+      list.forEach(p=>{
+        const card = document.createElement('div'); card.className='card';
+        card.innerHTML = `
+          <div class="thumb">IMG</div>
+          <div class="pname">${p.name}</div>
+          <div class="meta">${p.desc}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="price">₹${p.price}</div>
+            <div class="meta">${p.stock? 'In stock':'Out of stock'}</div>
+          </div>
+          <div class="actions">
+            <button class="btn" data-id="${p.id}" onclick="viewProduct(${p.id})">Details</button>
+            <button class="btn primary" onclick="addToCart(${p.id})">Add</button>
+          </div>
+        `;
+        productGrid.appendChild(card);
+      });
+    }
+
+    function attachEvents(){
+      searchInput.addEventListener('input', e=>{ state.q = e.target.value; renderProducts(); });
+      inStockOnly.addEventListener('change', e=>{ state.inStock = e.target.checked; renderProducts(); });
+      showOnSale.addEventListener('change', e=>{ state.onSale = e.target.checked; renderProducts(); });
+      sortBy.addEventListener('change', e=>{ state.sort = e.target.value; renderProducts(); });
+
+      closeModal.addEventListener('click', ()=>{ modalBack.style.display='none'; });
+      addToCartModal.addEventListener('click', ()=>{ if(currentModalProduct) addToCart(currentModalProduct.id); modalBack.style.display='none'; });
+
+      document.getElementById('cartBtn').addEventListener('click', ()=>{ alert('Cart features can be implemented with backend. Current cart count: '+Object.keys(state.cart).length); });
+    }
+
+    // --- Product actions ---
+    window.viewProduct = function(id){
+      const p = PRODUCTS.find(x=>x.id===id); if(!p) return;
+      currentModalProduct = p;
+      modalName.textContent = p.name;
+      modalCategory.textContent = 'Category: '+CATEGORIES.find(c=>c.id===p.category)?.name || p.category;
+      modalDesc.textContent = p.desc + '\n\nCompatibility: Check model list. Installation: simple screw-on / clip-fit depending on part.';
+      modalPrice.textContent = '₹'+p.price;
+      modalBack.style.display='flex';
+    }
+
+    window.addToCart = function(id){
+      const p = PRODUCTS.find(x=>x.id===id); if(!p) return;
+      if(!state.cart[id]) state.cart[id] = {product:p, qty:0};
+      state.cart[id].qty += 1;
+      updateCartUI();
+    }
+
+    function updateCartUI(){ cartCount.textContent = Object.values(state.cart).reduce((s,x)=>s+x.qty,0); }
+
+    // init
+    init();
+
+    // --- Notes for developer ---
+    /*
+      - Ye single-file template hai. Aap isme real images add kar sakte hain (replace .thumb content with <img src=...>)
+      - Backend integration: convert PRODUCTS into a dynamic fetch from PHP/MySQL or Node API.
+      - Add real cart page, checkout, user login as next steps.
+    */
+  </script>
+</body>
+</html>
